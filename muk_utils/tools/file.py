@@ -22,11 +22,25 @@
 
 import mimetypes
 import os
+import re
+import unicodedata
 import shutil
 import tempfile
 
 from odoo.tools.mimetypes import guess_mimetype
 
+
+#----------------------------------------------------------
+# File Helper
+#----------------------------------------------------------
+
+def slugify(value, lower=True):
+    value = unicodedata.normalize('NFKD', value)
+    value = value.encode('ascii', 'ignore').decode('ascii')
+    value = value.lower() if lower else value
+    value = re.sub('[^\w\s-]', '', value)
+    value = re.sub('[-\s]+', '-', value)
+    return value.strip()
 
 def check_name(name):
     tmp_dir = tempfile.mkdtemp()
