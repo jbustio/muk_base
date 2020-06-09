@@ -20,4 +20,4 @@
 #
 ###################################################################################
 
-from . import file, http, json, patch, security
+from . import rst, file, http, json, patch, security, image
