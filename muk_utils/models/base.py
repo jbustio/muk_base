@@ -68,8 +68,8 @@ class Base(models.AbstractModel):
                 return self._filter_access_rules(operation)
         return self.env[self._name]
 
-    def _filter_access_ids(self, operation, in_memory=True):
-        return self._filter_access(operation, in_memory=in_memory).ids
+    def _filter_access_ids(self, operation):
+        return self._filter_access(operation).ids
 
     def check_access(self, operation, raise_exception=False):
         """ Verifies that the operation given by ``operation`` is allowed for
