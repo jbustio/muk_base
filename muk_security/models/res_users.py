@@ -40,10 +40,10 @@ class AccessUser(models.Model):
     # Functions
     #----------------------------------------------------------
     
-    def browse(self, arg=None, *args, **kwargs):
-        return super(AccessUser, self).browse(convert_security_uid(arg), *args, **kwargs)
+    def browse(self, ids=None ):
+        return super(AccessUser, self).browse(convert_security_uid(ids))
     
     @classmethod
-    def _browse(cls, env, ids, *args, **kwargs):
-        access_ids = [convert_security_uid(id) for id in ids]
-        return super(AccessUser, cls)._browse(env, access_ids, *args, **kwargs)
+    def _browse(cls, env, ids, prefetch_ids):
+       # access_ids = [convert_security_uid(id) for id in ids]
+        return super(AccessUser, cls)._browse(env, ids, prefetch_ids)
